@@ -1,13 +1,20 @@
 # Stick Slip Batch Filter
 
 ## How to Use
-There are three python scripts in here. The only one you really need to use is `batch_filter.py`. If Python is installed correctly on your system, you _should_ be able to to just drag and drop `.tdms` files onto `batch_filter.py`. You should also be able to drag multiple files at a time onto this script. If you shift-select more than one `.tdms` file and drop it on the script, it'll run through all the files and generate images and excel files.
+There are three Python scripts in here. The only one you really need to use is `batch_filter.py`. If Python is installed correctly on your system, you _should_ be able to to just drag and drop `.tdms` files onto `batch_filter.py`. You should also be able to drag multiple files at a time onto this script. If you shift-select more than one `.tdms` file and drop it on the script, it'll run through all the files and generate images and Excel files.
+
+### File Structure
+There are only three files that do all the magic:
+1. `batch_filter.py`: This file reads in the files you drop on it and runs the filter script on each file
+2. `filter_tdms.py`: This script actually does all the math and data processing. Afte the data is processed, it send the data to the next file for graphing.
+3. `make_group_plots.py`: This script generates the plots. It's where you can modify the plot ranges and stuff. The plotting syntax is a lot like plotting in Matlab so if you want to edit things, it'll be similar to that. It uses the `matplotlib` library.
 
 ## If No Worky
-If drag and drop doesn't do anything or you can't drag and drop, it's likely that Python is not configured to open `.py` files in Windows. All you should have to do it right click and `.py` file, select "Open with", then "Choose another app". From here, select "Python Launcher" or "Python 3 Launcher". There should be a checkbox for "Make this my default" or some such nonsense. Click that. You should be good to go now. If it still doesn't work, we may need to do more technical things. Text/email me.
+If drag and drop doesn't do anything or you can't drag and drop, it's likely that Python is not configured to open `.py` files in Windows. All you should have to do it right click on the `.py` file, select "Open with", then "Choose another app". From here, select "Python Launcher" or "Python 3 Launcher". There should be a checkbox for "Make this my default" or some such nonsense. Click that. You should be good to go now. If it still doesn't work, we may need to do more technical things. Text/email me.
 
 ## Say You Don't Want Excel Files...
-Exporting to Excel is processor intensive and actually takes a few seconds to do. Making a `.png` file takes only a few ms. If you were to run this script on like 20 files, it'll slow down because of the Excel export. You can deactivate it pretty easily.
+Exporting to Excel is processor intensive and actually takes a few seconds to do. If you were to run this script on like 20 files, it'll slow down because of the Excel export. You can deactivate the Excel export pretty easily if you only want images and are impatient.
+
 Python `.py` files are really just text files. You too can be a hax0r coder by just opening `batch_filter.py` in Notepad and changing the following text from:
 ```python
 for file in file_list:
@@ -20,7 +27,7 @@ for file in file_list:
     filter_and_interpolate_data(file, export_excel=False)
 ```
 
-You're just changing `True` to `False` incase you missed it.
+You're just changing `True` to `False` in case you missed it.
 
 ## Say you wanna do more stuff with this...
 I put comments throughout the document (any line that begins with `#` is a comment). This should help walk you through the code and you can make changes wherever you need to. If you screw it up, you can just download this repository again. Python is a user friendly language in that it should be pretty readable. Sometimes it's not but Google is your friend (actually Google is reading all your emails and tracking all your web usage and is not your friend but that's another conversation.)
